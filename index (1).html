@@ -1,0 +1,98 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Can I Talk to You?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fbeaff;
+      padding-top: 100px;
+      margin: 0;
+      transition: background-color 0.5s ease;
+    }
+
+    h1 {
+      color: #ff4db8;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    #question {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #ff66cc;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="question">May tanong ako if you,  the most beautiful girl on this planet</h1>
+  <div id="buttons">
+    <button id="proceedBtn" onclick="handleYes()">proceed</button>
+    <button id="continueBtn" onclick="growYes()">continue</button>
+  </div>
+
+  <script>
+    let stage = 1;
+    let yesFontSize = 18;
+    let yesPadding = 15;
+
+    function growYes() {
+      const yesBtn = document.getElementById("yesBtn");
+
+      yesFontSize += 5;
+      yesPadding += 5;
+
+      yesBtn.style.fontSize = yesFontSize + "px";
+      yesBtn.style.padding = yesPadding + "px " + (yesPadding * 2) + "px";
+    }
+
+    function handleYes() {
+      const question = document.getElementById("question");
+      const buttonsDiv = document.getElementById("buttons");
+
+      if (stage === 1) {
+        question.classList.remove("fade-in");
+        question.innerText = "can i be your valentine elish flores??";
+        question.classList.add("fade-in");
+
+        buttonsDiv.innerHTML = `
+          <button id="yesBtn" onclick="handleYes()">Yes</button>
+          <button id="noBtn" onclick="growYes()">No</button>
+        `;
+
+        // Reset size so it can grow again in stage 2
+        yesFontSize = 18;
+        yesPadding = 15;
+        stage = 2;
+      } else if (stage === 2) {
+        document.body.innerHTML = `
+          <h1 class="fade-in" style="color: #ff4db8; font-size: 30px;">Yeyy! pakichat sakin sagot mo<br><br> HIHIHI -Mitcha(kael)💬</h1>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
